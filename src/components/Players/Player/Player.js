@@ -31,7 +31,12 @@ const player = (props) => {
               <label style={label}>{props.color}</label>
               {props.money}
             </span>
-            <input id="test" style={input} type="text" onChange={props.updateTemp} value={props.temp} />
+            <input
+              id="test"
+              style={input}
+              type="text"
+              value={props.temp}
+              onChange={(event) => props.update(event, props.color)} />
             <button onClick={() => props.modify(props.color, "+")}>+</button>
             <button onClick={() => props.modify(props.color, "-")}>-</button>
           </div>

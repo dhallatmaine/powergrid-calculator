@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Player from './Player/Player';
+import Players from '../components/Players/Players';
 
 class App extends Component {
   state = {
@@ -28,9 +28,9 @@ class App extends Component {
     const player = this.findPlayer(color);
 
     if (direction === "+") {
-      player.money += parseInt(player.temp);
+      player.money += parseInt(player.temp, 10);
     } else {
-      player.money -= parseInt(player.temp);
+      player.money -= parseInt(player.temp, 10);
     }
 
     const players = [...this.state.players];
@@ -54,15 +54,10 @@ class App extends Component {
   render() {
     let players = (
       <div>
-      {this.state.players.map(player => {
-          return <Player
-                    money={player.money}
-                    key={player.color}
-                    color={player.color}
-                    temp={player.temp}
-                    updateTemp={(event) => this.updateTempValue(event, player.color)}
-                    modify={this.modifyMoneyHandler}/>
-      })}
+        <Players
+          players={this.state.players}
+          update={this.updateTempValue}
+          modify={this.modifyMoneyHandler} />
       </div>
     );
 
