@@ -3,15 +3,16 @@ import './Player.css';
 
 class Player extends Component {
   state = {
-    money: 50
+    money: 50,
+    temp: 0
   }
 
-  update = (direction, value) => {
-    if (isNaN(parseInt(value, 10))) {
+  update = (direction) => {
+    if (isNaN(parseInt(this.state.entered, 10))) {
       return;
     }
     let current = this.state.money;
-    let val = Math.abs(parseInt(value, 10));
+    let val = Math.abs(parseInt(this.state.entered, 10));
     if (direction === "+") {
       current = current + val;
     } else {
@@ -25,46 +26,21 @@ class Player extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: this.props.color,
-      padding: '5px',
-      display: 'inline-block',
-      textAlign: 'right',
-      width: '100px',
-      color: 'white',
-      fontWeight: 'bold'
-    }
-
-    const label = {
-      float: 'left',
-    }
-
-    const container = {
-      padding: '10px'
-    }
-
-    const input = {
-      margin: '5px',
-      width: '20px'
-    }
-
-    if (this.props.color === "yellow") {
-      style.color = "black";
-    }
-
-    let text;
     return  (
-      <div style={container}>
-        <span style={style}>
-          <label style={label}>{this.props.color}</label>
-          {this.state.money}
+      <div class="container">
+        <span
+          style={{
+            backgroundColor: this.props.color,
+            color: this.props.color === "yellow" ? "black" : "white"}}>
+              <label>{this.props.color}</label>
+              {this.state.money}
         </span>
         <input
-          style={input}
           type="text"
-          ref={node => text = node}/>
-        <button onClick={() => this.update("+", text.value)}>+</button>
-        <button onClick={() => this.update("-", text.value)}>-</button>
+          value={this.state.entered}
+          onChange={(event) => {this.setState({temp: event.target.value})}}/>
+        <button onClick={() => this.update("+")}>+</button>
+        <button onClick={() => this.update("-")}>-</button>
       </div>
     )
   }

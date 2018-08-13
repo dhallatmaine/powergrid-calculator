@@ -1,3 +1,26 @@
 button {
   margin: 5px;
 }
+
+label {
+  float: left;
+}
+
+.container {
+  padding: 15px;
+  display: flex;
+}
+
+input {
+  margin: 5px;
+  width: 20px;
+}
+
+span {
+  padding: 5px;
+  display: inline-block;
+  text-align: right;
+  width: 100px;
+  color: white;
+  font-weight: bold;
+}
