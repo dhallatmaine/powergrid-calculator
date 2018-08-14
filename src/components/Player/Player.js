@@ -4,7 +4,7 @@ import './Player.css';
 class Player extends Component {
   state = {
     money: 50,
-    temp: 0
+    entered: 0
   }
 
   update = (direction) => {
@@ -27,7 +27,7 @@ class Player extends Component {
 
   render() {
     return  (
-      <div class="container">
+      <div className="container">
         <span
           style={{
             backgroundColor: this.props.color,
@@ -38,7 +38,7 @@ class Player extends Component {
         <input
           type="text"
           value={this.state.entered}
-          onChange={(event) => {this.setState({temp: event.target.value})}}/>
+          onChange={(event) => {this.setState({entered: event.target.value})}}/>
         <button onClick={() => this.update("+")}>+</button>
         <button onClick={() => this.update("-")}>-</button>
       </div>
